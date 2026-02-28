@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/config.schema.json",
+  "title": "Pipeline config.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["globalVariables", "processes"],
+  "properties": {
+    "globalVariables": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/GlobalVariable" }
+    },
+    "processes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/ProcessConfig" }
+    },
+    "smtpConfig": { "$ref": "#/$defs/SmtpConfig" }
+  },
+
+  "$defs": {
+
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+    },
+
+    "NonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "NoExpressionsString": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "^\\$\\{" },
+      "description": "Expressions (${...}) are not allowed inside config.json except in explicit ref fields."
+    },
+
+    "RefOrganization": {
+      "type": "string",
+      "pattern": "^\\$\\{ref:organization\\.[A-Za-z_][A-Za-z0-9_]*\\}$"
+    },
+
+    "RefFileForm": {
+      "type": "string",
+      "pattern": "^\\$\\{file:forms\\/.+\\.json\\}$"
+    },
+
+    "RefFileEmailJson": {
+      "type": "string",
+      "pattern": "^\\$\\{file:emails\\/.+\\.json\\}$"
+    },
+
+    "RefFileEmailFtl": {
+      "type": "string",
+      "pattern": "^\\$\\{file:emails\\/.+\\.ftl\\}$"
+    },
+
+    "RefFileRest": {
+      "type": "string",
+      "pattern": "^\\$\\{file:rests\\/.+\\.json\\}$"
+    },
+
+    "RefFileDmn": {
+      "type": "string",
+      "pattern": "^\\$\\{file:dmn\\/.+\\.dmn\\}$"
+    },
+
+    "VendorSpecificAttributes": {
+      "type": "object",
+      "additionalProperties": true
+    },
+
+    "GlobalVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value"],
+      "properties": {
+        "name": { "$ref": "#/$defs/Identifier" },
+        "value": { "$ref": "#/$defs/NoExpressionsString" }
+      }
+    },
+
+    "ProcessConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "config"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "$ref": "#/$defs/Identifier" },
+        "config": { "$ref": "#/$defs/ProcessInnerConfig" }
+      }
+    },
+
+    "ProcessInnerConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lanes", "events", "tasks"],
+      "properties": {
+        "lanes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/LaneConfig" }
+        },
+        "events": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/EventConfig" }
+        },
+        "tasks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TaskConfig" }
+        }
+      }
+    },
+
+    "LaneConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "assignee"],
+      "properties": {
+        "name": { "$ref": "#/$defs/NonEmptyString" },
+        "assignee": {
+          "oneOf": [
+            { "$ref": "#/$defs/RefOrganization" },
+            {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/RefOrganization" }
+            }
+          ]
+        },
+        "vendor_specific_attributes": { "$ref": "#/$defs/VendorSpecificAttributes" }
+      }
+    },
+
+    "EventConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "$ref": "#/$defs/NonEmptyString" },
+        "vendor_specific_attributes": { "$ref": "#/$defs/VendorSpecificAttributes" }
+      }
+    },
+
+    "TaskConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+
+        "name": { "$ref": "#/$defs/NonEmptyString" },
+
+        "formRef": { "$ref": "#/$defs/RefFileForm" },
+
+        "emailJsonRef": { "$ref": "#/$defs/RefFileEmailJson" },
+        "emailFtlRef": { "$ref": "#/$defs/RefFileEmailFtl" },
+
+        "restCallRef": { "$ref": "#/$defs/RefFileRest" },
+
+        "dmnRef": { "$ref": "#/$defs/RefFileDmn" },
+        "dmnResultVariable": {
+          "type": "string",
+          "pattern": "^\\$\\{~[^}]+~\\}$"
+        },
+
+        "vendor_specific_attributes": { "$ref": "#/$defs/VendorSpecificAttributes" }
+      },
+
+      "allOf": [
+
+        {
+          "if": { "required": ["emailJsonRef"] },
+          "then": { "required": ["emailFtlRef"] }
+        },
+        {
+          "if": { "required": ["emailFtlRef"] },
+          "then": { "required": ["emailJsonRef"] }
+        },
+
+        {
+          "not": {
+            "anyOf": [
+              { "required": ["formRef", "emailJsonRef"] },
+              { "required": ["formRef", "restCallRef"] },
+              { "required": ["formRef", "dmnRef"] },
+              { "required": ["emailJsonRef", "restCallRef"] },
+              { "required": ["emailJsonRef", "dmnRef"] },
+              { "required": ["restCallRef", "dmnRef"] }
+            ]
+          }
+        },
+
+        {
+          "if": { "required": ["dmnRef"] },
+          "then": { "required": ["dmnResultVariable"] }
+        }
+      ]
+    },
+
+    "SmtpConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["host", "port", "username", "password"],
+      "properties": {
+        "host": { "$ref": "#/$defs/NoExpressionsString" },
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "username": { "$ref": "#/$defs/NoExpressionsString" },
+        "password": { "$ref": "#/$defs/NoExpressionsString" }
+      }
+    }
+  }
+}
