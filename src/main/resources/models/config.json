@@ -1,0 +1,91 @@
+{
+  "globalVariables": [
+    {
+      "name": "notificationServiceBaseUrl",
+      "value": "https://httpbin.org"
+    },
+    {
+      "name": "appBaseUrl",
+      "value": "https://abcd...."
+    }
+  ],
+  "processes": [
+    {
+      "id": "absenceRequest",
+      "name": "absenceRequest",
+      "config": {
+        "lanes": [
+          {
+            "name": "Employee",
+            "assignee": "${ref:organization.alice}",
+            "vendor_specific_attributes": {}
+          },
+          {
+            "name": "Line Manager",
+            "assignee": "${ref:organization.bob}",
+            "vendor_specific_attributes": {
+              "camunda:dueDate": "P3D",
+              "camunda:priority": "10"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "employee_needs_time_off",
+            "vendor_specific_attributes": {}
+          },
+          {
+            "name": "timer1",
+            "vendor_specific_attributes": {}
+          }
+        ],
+        "tasks": [
+          {
+            "name": "Request Absence",
+            "formRef": "${file:forms/request_absence_form.json}",
+            "vendor_specific_attributes": {}
+          },
+          {
+            "name": "Approve Absence",
+            "formRef": "${file:forms/approve_absence_form.json}",
+            "vendor_specific_attributes": {}
+          },
+          {
+            "name": "Remind Line Manager",
+            "emailJsonRef": "${file:emails/remind_line_manager_email.json}",
+            "emailFtlRef": "${file:emails/remind_line_manager_email.ftl}",
+            "vendor_specific_attributes": {
+              "bonita:xml": "          <operations xmi:type=\"expression:Operation\" xmi:id=\"_zfZSgPoIEfCaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_zfcV0PoIEfCaTuw6sE6ejA\" name=\"mgr1\" content=\"mgr1\" type=\"TYPE_VARIABLE\" returnType=\"com.company.model.LineManager\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_0xd-YPoIEfCaTuw6sE6ejA\" name=\"mgr1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.LineManager\"/>\n            </leftOperand>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_zfc84PoIEfCaTuw6sE6ejA\" name=\"newScript()\" content=\"1\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnType=\"java.lang.Integer\"/>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"_zfdj8PoIEfCaTuw6sE6ejA\" type=\"JAVA_METHOD\" expression=\"setId\">\n              <inputTypes>java.lang.Integer</inputTypes>\n            </operator>\n          </operations>\n          <operations xmi:type=\"expression:Operation\" xmi:id=\"_5eXyYPoIEfCaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_5eZAgPoIEfCaTuw6sE6ejA\" name=\"mgr1\" content=\"mgr1\" type=\"TYPE_VARIABLE\" returnType=\"com.company.model.LineManager\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_6MNv0PoIEfCaTuw6sE6ejA\" name=\"mgr1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.LineManager\"/>\n            </leftOperand>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_5eZAgfoIEfCaTuw6sE6ejA\" name=\"newScript()\" content=\"'voleakcook@gmail.com'\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\"/>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"_5eZAgvoIEfCaTuw6sE6ejA\" type=\"JAVA_METHOD\" expression=\"setEmail\">\n              <inputTypes>java.lang.String</inputTypes>\n            </operator>\n          </operations>\n          <operations xmi:type=\"expression:Operation\" xmi:id=\"__bJS0PoIEfCaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"__bJ54PoIEfCaTuw6sE6ejA\" name=\"mgr1\" content=\"mgr1\" type=\"TYPE_VARIABLE\" returnType=\"com.company.model.LineManager\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_ALQhIPoJEfCaTuw6sE6ejA\" name=\"mgr1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.LineManager\"/>\n            </leftOperand>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"__bKg8PoIEfCaTuw6sE6ejA\" name=\"newScript()\" content=\"'Alice Manager'\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\"/>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"__bKg8foIEfCaTuw6sE6ejA\" type=\"JAVA_METHOD\" expression=\"setFullName\">\n              <inputTypes>java.lang.String</inputTypes>\n            </operator>\n          </operations>"
+            }
+          },
+          {
+            "name": "Provide further Explanation",
+            "formRef": "${file:forms/provide_further_explanation_form.json}",
+            "vendor_specific_attributes": {
+              "camunda:test1": "someValue1",
+              "camunda:test2": "someValue2"
+            }
+          },
+          {
+            "name": "Log Absence in System",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.LogAbsenceInSystemService",
+              "bonita:xml": "<operations xmi:type=\"expression:Operation\" xmi:id=\"_zSFkoPlrEfCaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_zSFkoflrEfCaTuw6sE6ejA\" name=\"rec1\" content=\"rec1\" type=\"TYPE_VARIABLE\" returnType=\"com.company.model.LoggedAbsenceRecord\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_clRjkPltEfCaTuw6sE6ejA\" name=\"rec1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.LoggedAbsenceRecord\"/>\n            </leftOperand>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_zSFkovlrEfCaTuw6sE6ejA\" name=\"newScript()\" content=\"1\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnType=\"java.lang.Integer\"/>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"_zSFko_lrEfCaTuw6sE6ejA\" type=\"JAVA_METHOD\" expression=\"setRecordId\">\n              <inputTypes>java.lang.Integer</inputTypes>\n            </operator>\n          </operations>\n          <operations xmi:type=\"expression:Operation\" xmi:id=\"_klydYPltEfCaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_kl0SkPltEfCaTuw6sE6ejA\" name=\"rec1\" content=\"rec1\" type=\"TYPE_VARIABLE\" returnType=\"com.company.model.LoggedAbsenceRecord\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_qMg1UPltEfCaTuw6sE6ejA\" name=\"rec1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.LoggedAbsenceRecord\"/>\n            </leftOperand>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_kl05oPltEfCaTuw6sE6ejA\" name=\"newScript()\" content=\"1\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnType=\"java.lang.Long\"/>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"_kl2HwPltEfCaTuw6sE6ejA\" type=\"JAVA_METHOD\" expression=\"setLoggedDate\">\n              <inputTypes>java.lang.Long</inputTypes>\n            </operator>\n          </operations>\n          <operations xmi:type=\"expression:Operation\" xmi:id=\"_U7erMPluEfCaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_U7ggYPluEfCaTuw6sE6ejA\" name=\"rec1\" content=\"rec1\" type=\"TYPE_VARIABLE\" returnType=\"com.company.model.LoggedAbsenceRecord\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_WILu4PluEfCaTuw6sE6ejA\" name=\"rec1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.LoggedAbsenceRecord\"/>\n            </leftOperand>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_U7hHcPluEfCaTuw6sE6ejA\" name=\"newScript()\" content=\"req1.requestId\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnType=\"java.lang.Integer\">\n              <referencedElements xmi:type=\"process:BusinessObjectData\" xmi:id=\"_dvUfYPluEfCaTuw6sE6ejA\" name=\"req1\" dataType=\"_ZuF28u7sEfCoIMCqMDCGog\" className=\"com.company.model.AbsenceRequest\"/>\n            </rightOperand>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"_U7hHcfluEfCaTuw6sE6ejA\" type=\"JAVA_METHOD\" expression=\"setAbsenceRequestId\">\n              <inputTypes>java.lang.Integer</inputTypes>\n            </operator>\n          </operations>"
+            }
+          },
+          {
+            "name": "Notify Employee",
+            "restCallRef": "${file:rests/notify_employee_rest.json}",
+            "vendor_specific_attributes": {}
+          }
+        ]
+      }
+    }
+  ],
+  "smtpConfig": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "username": "keycloak2322@gmail.com",
+    "password": "pkjm hxdx eqzx pgyw"
+  }
+}
