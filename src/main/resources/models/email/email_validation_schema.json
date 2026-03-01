@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmailAction",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "email",
+      "description": "Must be 'email'."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "description": "Logical identifier for this email action."
+    },
+    "description": {
+      "type": "string"
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "subject"],
+      "properties": {
+        "from": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "minLength": 1 },
+        "subject": { "type": "string", "minLength": 1 }
+      }
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["templateRef", "parameters"],
+      "properties": {
+        "templateRef": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name/path of the FTL template."
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Variables passed into the template.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": ["type", "id", "headers", "body"]
+}

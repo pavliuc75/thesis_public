@@ -1,0 +1,12 @@
+{
+  "description": "Send final decision to employee.",
+  "request": {
+    "methsod": "POST___________________________________________________________",
+    "url": "${notificationServiceBaseUrl}/notify",
+    "body": {
+      "to": "${absenceRequest.employeeEmail}",
+      "subject": "Absence request ${absenceRequest.requestId}: ${absenceRequest.status}",
+      "message": "Hello ${absenceRequest.employeeName}, your request has been ${absenceRequest.status}."
+    }
+  }
+}

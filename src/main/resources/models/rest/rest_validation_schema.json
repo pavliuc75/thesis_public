@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RestAction",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "rest",
+      "description": "Type discriminator; must be 'rest'."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "description": "Logical identifier for this action."
+    },
+    "description": {
+      "type": "string"
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "url"],
+      "properties": {
+        "method": {
+          "type": "string",
+          "description": "HTTP method",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "HEAD",
+            "OPTIONS"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Target URL or URL template."
+        },
+        "headers": {
+          "type": "object",
+          "description": "Optional HTTP headers.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "query": {
+          "type": "object",
+          "description": "Optional query parameters.",
+          "additionalProperties": {
+            "type": ["string", "number", "boolean", "null"]
+          }
+        },
+        "body": {
+          "description": "Optional request body payload.",
+          "oneOf": [
+            { "type": "object" },
+            { "type": "string" },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  },
+  "required": ["type", "id", "request"]
+}

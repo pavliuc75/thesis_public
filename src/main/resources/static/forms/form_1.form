@@ -1,0 +1,40 @@
+{
+  "components": [
+    {
+      "label": "fieldA",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1d39nfp",
+        "columns": 2
+      },
+      "id": "Field_0c4xlfz",
+      "key": "fieldA",
+      "validate": {
+        "minLength": "4"
+      },
+      "properties": {}
+    },
+    {
+      "label": "Checkbox",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0w0bjpy",
+        "columns": null
+      },
+      "id": "Field_1ut2opc",
+      "key": "fieldB",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "Form_1j2qaqi",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.40.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}
