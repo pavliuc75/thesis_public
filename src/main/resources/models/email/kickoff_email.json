@@ -1,0 +1,16 @@
+{
+  "type": "email",
+  "id": "kickoffEmail",
+  "description": "Kick-off email",
+  "headers": {
+    "from": "no-reply@company.example",
+    "to": "nicolai.pavliuc@undp.org",
+    "subject": "sendKickOffEmail"
+  },
+  "body": {
+    "templateRef": "kickoff_email.ftl",
+    "parameters": {
+      "name": "Nicolai"
+    }
+  }
+}

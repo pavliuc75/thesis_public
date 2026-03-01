@@ -1,0 +1,38 @@
+<form role="form" name="AbsenceRequest">
+  <label for="req1_requestId">Request Id *</label>
+  <input type="number" id="req1_requestId" cam-variable-name="req1_requestId" cam-variable-type="Long" required>
+
+  <label for="req1_employeeId">Employee Id *</label>
+  <input type="number" id="req1_employeeId" cam-variable-name="req1_employeeId" cam-variable-type="Long" required>
+
+  <label for="req1_absenceType">Absence Type *</label>
+  <input type="text" id="req1_absenceType" cam-variable-name="req1_absenceType" cam-variable-type="String" required>
+
+  <label for="req1_startDate">Start Date *</label>
+  <input type="number" id="req1_startDate" cam-variable-name="req1_startDate" cam-variable-type="Long" required>
+
+  <label for="req1_endDate">End Date *</label>
+  <input type="number" id="req1_endDate" cam-variable-name="req1_endDate" cam-variable-type="Long" required>
+
+  <label for="req1_reason">Reason</label>
+  <input type="text" id="req1_reason" cam-variable-name="req1_reason" cam-variable-type="String">
+
+  <label for="req1_managerId">Manager Id</label>
+  <input type="number" id="req1_managerId" cam-variable-name="req1_managerId" cam-variable-type="Long">
+
+  <label for="req1_status">Status</label>
+  <select id="req1_status" cam-variable-name="req1_status" cam-variable-type="String">
+    <option value="">-- Select --</option>
+    <option value="PENDING">PENDING</option>
+    <option value="APPROVED">APPROVED</option>
+    <option value="REJECTED">REJECTED</option>
+    <option value="NEEDS_CLARIFICATION">NEEDS_CLARIFICATION</option>
+  </select>
+
+  <label for="req1_clarificationMessage_message">Message</label>
+  <input type="text" id="req1_clarificationMessage_message" cam-variable-name="req1_clarificationMessage_message" cam-variable-type="String">
+
+  <label for="req1_clarificationMessage_timestamp">Timestamp</label>
+  <input type="number" id="req1_clarificationMessage_timestamp" cam-variable-name="req1_clarificationMessage_timestamp" cam-variable-type="Long">
+
+</form>

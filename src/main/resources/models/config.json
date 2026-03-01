@@ -1,0 +1,32 @@
+{
+  "processes": [
+    {
+      "id": "Process_0ngxn9m",
+      "name": "secondStep",
+      "config": {
+        "lanes": [
+          {
+            "name": "_default",
+            "assignee": "${ref:organization.alice}",
+            "vendor_specific_attributes": {}
+          }
+        ],
+        "events": [
+        ],
+        "tasks": [
+          {
+            "name": "Send kick-off email",
+            "emailJsonRef": "${file:emails/kickoff_email.json}",
+            "emailFtlRef": "${file:emails/kickoff_email.ftl}"
+          }
+        ]
+      }
+    }
+  ],
+  "smtpConfig": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "username": "keycloak2322@gmail.com",
+    "password": "pkjm hxdx eqzx pgyw"
+  }
+}
