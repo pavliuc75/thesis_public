@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_14ob7kq" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.27.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <decision id="loan_approval_dmn" name="Decision 1">
+    <decisionTable id="DecisionTable_1pdtx17">
+      <input id="Input_1" label="Age">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>${~loa1.age~}</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_02g1qz8" label="Country">
+        <inputExpression id="LiteralExpression_1u1do00" typeRef="string">
+          <text>${~loa1.country~}</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_047ta38" label="Amount">
+        <inputExpression id="LiteralExpression_03yp3kf" typeRef="integer">
+          <text>${~loa1.amount~}</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Approval State" name="${~loa1.approvalState~}" typeRef="string" biodi:width="274" />
+      <rule id="DecisionRule_0s59gj2">
+        <inputEntry id="UnaryTests_035jbj6">
+          <text>&lt; 21</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_043oi2o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n6oqzq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04xauaw">
+          <text>"DECLINED"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0o8w3bc">
+        <inputEntry id="UnaryTests_0spkj5c">
+          <text>&gt;= 21</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h0x7pz">
+          <text>"NL","CH"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jtis46">
+          <text>&gt;= 100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wescu0">
+          <text>"REVIEW"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pfswm6">
+        <inputEntry id="UnaryTests_0xsxy05">
+          <text>&gt;= 21</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18iab45">
+          <text>not("CH","NL")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hn1itg">
+          <text>&gt;= 100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07kl7fu">
+          <text>"DECLINED"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hxef9v">
+        <inputEntry id="UnaryTests_0yq0r8o">
+          <text>&gt;= 21</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qcl921">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1c1fuv9">
+          <text>&lt; 100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hal3sp">
+          <text>"APPROVED"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="loan_approval_dmn">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
