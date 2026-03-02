@@ -1,0 +1,13 @@
+{
+  "type": "rest",
+  "id": "notifyEmployee",
+  "description": "Send final decision to employee.",
+  "request": {
+    "method": "POST",
+    "url": "${~globalVariables.notificationServiceBaseUrl~}/post",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"recipient\":\"${~req1.employeeId~}\",\"title\":\"Absence Request Update\",\"content\":\"Dear ${~req1.employeeId~}, your absence request #${~req1.requestId~} has been ${~req1.status~}. Thank you for your submission.\"}"
+  }
+}

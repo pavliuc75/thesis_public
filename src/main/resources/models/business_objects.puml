@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class AbsenceRequest {
+    requestId: int
+    employeeId: int
+    absenceType: string
+    startDate: long
+    endDate: long
+    reason: string
+    managerId: int
+    status: Status
+    clarificationMessage: ClarificationMessage
+}
+
+class ClarificationMessage {
+message: string
+timestampp: long
+}
+
+class LineManager {
+  id: int
+  fullName: string
+  email: string
+}
+
+class LoggedAbsenceRecord {
+  recordId: int
+  absenceRequestId: int
+  loggedDate: long
+}
+
+enum Status {
+Submitted
+ClarificationRequired
+Approved
+Rejected
+}
+
+AbsenceRequest *-- ClarificationMessage
+
+
+@enduml

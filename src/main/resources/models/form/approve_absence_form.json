@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AbsenceRequest",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "integer"
+    },
+    "employeeId": {
+      "type": "integer"
+    },
+    "absenceType": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "integer"
+    },
+    "endDate": {
+      "type": "integer"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "managerId": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "APPROVED", "REJECTED", "NEEDS_CLARIFICATION"]
+    },
+    "clarificationMessage": {
+      "$ref": "#/$defs/ClarificationMessage"
+    }
+  },
+    "required": [
+      "requestId",
+      "employeeId",
+      "absenceType",
+      "startDate",
+      "endDate",
+      "status",
+      "managerId"
+    ],
+  "$defs": {
+    "ClarificationMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "timestampp": {
+          "type": "integer",
+          "description": "Unix timestamp"
+        }
+      },
+      "required": []
+    }
+  }
+}

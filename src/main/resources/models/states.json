@@ -1,0 +1,62 @@
+{
+  "classes": [
+    {
+      "name": "AbsenceRequest",
+      "states": [
+        {
+          "name": "submitted",
+          "requiredFields": [
+            "requestId",
+            "employeeId",
+            "absenceType",
+            "startDate",
+            "endDate"
+          ]
+        },
+        {
+          "name": "reviewed",
+          "requiredFields": [
+            "requestId",
+            "employeeId",
+            "absenceType",
+            "startDate",
+            "endDate",
+            "status",
+            "managerId"
+          ]
+        },
+        {
+          "name": "withExplanation",
+          "requiredFields": [
+            "requestId",
+            "employeeId",
+            "absenceType",
+            "startDate",
+            "endDate",
+            "status",
+            "managerId",
+            "clarificationMessage"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LineManager",
+      "states": [
+        {
+          "name": "_default",
+          "requiredFields": []
+        }
+      ]
+    },
+    {
+      "name": "LoggedAbsenceRecord",
+      "states": [
+        {
+          "name": "_default",
+          "requiredFields": []
+        }
+      ]
+    }
+  ]
+}
