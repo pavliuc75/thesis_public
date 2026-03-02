@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class LoanRequest {
+    requestId: int
+    age: int
+    country: string
+    amount: int
+    approvalState: ApprovalState
+}
+
+enum ApprovalState {
+    DECLINED
+    REVIEW
+    APPROVED
+}
+
+@enduml

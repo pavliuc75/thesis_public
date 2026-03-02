@@ -1,0 +1,39 @@
+{
+  "globalVariables": [
+  ],
+  "processes": [
+    {
+      "id": "loanApproval",
+      "name": "loanApproval",
+      "config": {
+        "lanes": [
+          {
+            "name": "_default",
+            "assignee": "${ref:organization.alice}",
+            "vendor_specific_attributes": {}
+          }
+        ],
+        "events": [
+        ],
+        "tasks": [
+          {
+            "name": "Loan Request Intake",
+            "formRef": "${file:forms/loan_request_intake.json}",
+            "vendor_specific_attributes": {}
+          },
+          {
+            "name": "Review Loan Request",
+            "formRef": "${file:forms/review_loan_request.json}",
+            "vendor_specific_attributes": {}
+          },
+          {
+            "name": "Evaluate Loan Request",
+            "dmnRef": "${file:dmn/loan_approval_dmn.dmn}",
+            "dmnResultVariable": "${~loa1.approvalState~}",
+            "vendor_specific_attributes": {}
+          }
+        ]
+      }
+    }
+  ]
+}

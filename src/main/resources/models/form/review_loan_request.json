@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review Loan Request",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "integer"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "country": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "integer"
+    },
+    "approvalState": {
+      "type": "string",
+      "enum": [
+        "DECLINED",
+        "REVIEW",
+        "APPROVED"
+      ]
+    }
+  },
+  "required": [
+    "requestId",
+    "age",
+    "country",
+    "amount",
+    "approvalState"
+  ]
+}

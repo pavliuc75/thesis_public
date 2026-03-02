@@ -1,0 +1,28 @@
+{
+  "classes": [
+    {
+      "name": "LoanRequest",
+      "states": [
+        {
+          "name": "submitted",
+          "requiredFields": [
+            "requestId",
+            "age",
+            "country",
+            "amount"
+          ]
+        },
+        {
+          "name": "reviewed",
+          "requiredFields": [
+            "requestId",
+            "age",
+            "country",
+            "amount",
+            "approvalState"
+          ]
+        }
+      ]
+    }
+  ]
+}
