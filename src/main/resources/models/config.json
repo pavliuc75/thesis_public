@@ -1,0 +1,61 @@
+{
+  "globalVariables": [
+  ],
+  "processes": [
+    {
+      "id": "errorHandling",
+      "name": "ErrorHandling",
+      "config": {
+        "lanes": [
+          {
+            "name": "_default",
+            "assignee": "${ref:organization.alice}",
+            "vendor_specific_attributes": {}
+          }
+        ],
+        "events": [
+        ],
+        "tasks": [
+          {
+            "name": "Verify Data is Correct",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.ThrowDelegate",
+              "bonita:xml": "          <connectors xmi:type=\"process:Connector\" xmi:id=\"_puDB4ARIEfGaTuw6sE6ejA\" name=\"throw\" definitionId=\"scripting-groovy-script\" event=\"ON_FINISH\" throwErrorEvent=\"true\" namedError=\"Error_0o6526h\" definitionVersion=\"1.0.1\">\n            <configuration xmi:type=\"connectorconfiguration:ConnectorConfiguration\" xmi:id=\"_puFeIARIEfGaTuw6sE6ejA\" definitionId=\"scripting-groovy-script\" version=\"1.0.1\" modelVersion=\"9\">\n              <parameters xmi:type=\"connectorconfiguration:ConnectorParameter\" xmi:id=\"_puFeIQRIEfGaTuw6sE6ejA\" key=\"script\">\n                <expression xmi:type=\"expression:Expression\" xmi:id=\"_puFeIgRIEfGaTuw6sE6ejA\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnTypeFixed=\"true\"/>\n              </parameters>\n              <parameters xmi:type=\"connectorconfiguration:ConnectorParameter\" xmi:id=\"_puFeIwRIEfGaTuw6sE6ejA\" key=\"variables\">\n                <expression xmi:type=\"expression:Expression\" xmi:id=\"_puFeJARIEfGaTuw6sE6ejA\" returnType=\"java.util.List\" returnTypeFixed=\"true\"/>\n              </parameters>\n              <parameters xmi:type=\"connectorconfiguration:ConnectorParameter\" xmi:id=\"_puGFMARIEfGaTuw6sE6ejA\" key=\"fakeScriptExpression\">\n                <expression xmi:type=\"expression:Expression\" xmi:id=\"_puGFMQRIEfGaTuw6sE6ejA\" name=\"newScript()\" content=\"throw new Exception(&quot;Intentionally failing for testing (Bonita/Groovy).&quot;)&#xA;\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnType=\"java.lang.Object\" returnTypeFixed=\"true\"/>\n              </parameters>\n            </configuration>\n            <outputs xmi:type=\"expression:Operation\" xmi:id=\"_puGFMgRIEfGaTuw6sE6ejA\">\n              <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_puGFMwRIEfGaTuw6sE6ejA\"/>\n              <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_puGFNARIEfGaTuw6sE6ejA\" name=\"result\" content=\"result\" type=\"CONNECTOR_OUTPUT_TYPE\" returnType=\"java.lang.Object\">\n                <referencedElements xmi:type=\"definition:Output\" xmi:id=\"_puGFNQRIEfGaTuw6sE6ejA\" name=\"result\" type=\"java.lang.Object\"/>\n              </rightOperand>\n              <operator xmi:type=\"expression:Operator\" xmi:id=\"_puGFNgRIEfGaTuw6sE6ejA\" type=\"ASSIGNMENT\"/>\n            </outputs>\n          </connectors>"
+            }
+          },
+          {
+            "name": "Update CMS Record",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.BlancDelegate"
+            }
+          },
+          {
+            "name": "Create account in Support System",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.ThrowDelegate",
+              "bonita:xml": "        <connectors xmi:type=\"process:Connector\" xmi:id=\"_gOxNkARUEfGaTuw6sE6ejA\" name=\"throw\" definitionId=\"scripting-groovy-script\" event=\"ON_FINISH\" throwErrorEvent=\"true\" namedError=\"Error_0o6526h\" definitionVersion=\"1.0.1\">\n          <configuration xmi:type=\"connectorconfiguration:ConnectorConfiguration\" xmi:id=\"_gOzp0ARUEfGaTuw6sE6ejA\" definitionId=\"scripting-groovy-script\" version=\"1.0.1\" modelVersion=\"9\">\n            <parameters xmi:type=\"connectorconfiguration:ConnectorParameter\" xmi:id=\"_gO0Q4ARUEfGaTuw6sE6ejA\" key=\"script\">\n              <expression xmi:type=\"expression:Expression\" xmi:id=\"_gO038ARUEfGaTuw6sE6ejA\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnTypeFixed=\"true\"/>\n            </parameters>\n            <parameters xmi:type=\"connectorconfiguration:ConnectorParameter\" xmi:id=\"_gO038QRUEfGaTuw6sE6ejA\" key=\"variables\">\n              <expression xmi:type=\"expression:Expression\" xmi:id=\"_gO038gRUEfGaTuw6sE6ejA\" returnType=\"java.util.List\" returnTypeFixed=\"true\"/>\n            </parameters>\n            <parameters xmi:type=\"connectorconfiguration:ConnectorParameter\" xmi:id=\"_gO038wRUEfGaTuw6sE6ejA\" key=\"fakeScriptExpression\">\n              <expression xmi:type=\"expression:Expression\" xmi:id=\"_gO039ARUEfGaTuw6sE6ejA\" name=\"newScript()\" content=\"throw new Exception(&quot;Intentionally failing for testing (Bonita/Groovy).&quot;)&#xA;\" interpreter=\"GROOVY\" type=\"TYPE_READ_ONLY_SCRIPT\" returnType=\"java.lang.Object\" returnTypeFixed=\"true\"/>\n            </parameters>\n          </configuration>\n          <outputs xmi:type=\"expression:Operation\" xmi:id=\"_gO039QRUEfGaTuw6sE6ejA\">\n            <leftOperand xmi:type=\"expression:Expression\" xmi:id=\"_gO039gRUEfGaTuw6sE6ejA\"/>\n            <rightOperand xmi:type=\"expression:Expression\" xmi:id=\"_gO039wRUEfGaTuw6sE6ejA\" name=\"result\" content=\"result\" type=\"CONNECTOR_OUTPUT_TYPE\" returnType=\"java.lang.Object\">\n              <referencedElements xmi:type=\"definition:Output\" xmi:id=\"_gO03-ARUEfGaTuw6sE6ejA\" name=\"result\" type=\"java.lang.Object\"/>\n            </rightOperand>\n            <operator xmi:type=\"expression:Operator\" xmi:id=\"_gO03-QRUEfGaTuw6sE6ejA\" type=\"ASSIGNMENT\"/>\n          </outputs>\n        </connectors>"
+            }
+          },
+          {
+            "name": "Grant access to platform",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.BlancDelegate"
+            }
+          },
+          {
+            "name": "Send success message to user",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.BlancDelegate"
+            }
+          },
+          {
+            "name": "Remove Any Records Created",
+            "vendor_specific_attributes": {
+              "camunda:class": "org.camunda.bpm.getstarted.loanapproval.delegates.BlancDelegate"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
