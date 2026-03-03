@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<businessObjectModel xmlns="http://documentation.bonitasoft.com/bdm-xml-schema/1.0" modelVersion="1.0">
+    <businessObjects>
+        <businessObject qualifiedName="com.company.model.AbsenceRequest">
+            <fields>
+                <field collection="false" length="255" name="requestId" nullable="true" type="INTEGER"/>
+                <field collection="false" length="255" name="employeeId" nullable="true" type="INTEGER"/>
+                <field collection="false" length="255" name="absenceType" nullable="true" type="STRING"/>
+                <field collection="false" length="255" name="startDate" nullable="true" type="LONG"/>
+                <field collection="false" length="255" name="endDate" nullable="true" type="LONG"/>
+                <field collection="false" length="255" name="reason" nullable="true" type="STRING"/>
+                <field collection="false" length="255" name="managerId" nullable="true" type="INTEGER"/>
+                <field collection="false" length="255" name="status" nullable="true" type="STRING"/>
+                <relationField collection="false" fetchType="LAZY" name="clarificationMessage" nullable="true" reference="com.company.model.ClarificationMessage" type="COMPOSITION"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.ClarificationMessage">
+            <fields>
+                <field collection="false" length="255" name="message" nullable="true" type="STRING"/>
+                <field collection="false" length="255" name="timestampp" nullable="true" type="LONG"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.LineManager">
+            <fields>
+                <field collection="false" length="255" name="id" nullable="true" type="INTEGER"/>
+                <field collection="false" length="255" name="fullName" nullable="true" type="STRING"/>
+                <field collection="false" length="255" name="email" nullable="true" type="STRING"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+        <businessObject qualifiedName="com.company.model.LoggedAbsenceRecord">
+            <fields>
+                <field collection="false" length="255" name="recordId" nullable="true" type="INTEGER"/>
+                <field collection="false" length="255" name="absenceRequestId" nullable="true" type="INTEGER"/>
+                <field collection="false" length="255" name="loggedDate" nullable="true" type="LONG"/>
+            </fields>
+            <uniqueConstraints/>
+            <queries/>
+            <indexes/>
+        </businessObject>
+    </businessObjects>
+</businessObjectModel>

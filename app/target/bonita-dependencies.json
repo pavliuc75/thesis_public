@@ -1,0 +1,289 @@
+{
+  "connectorImplementations" : [ {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.email.EmailConnector",
+    "implementationId" : "email-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "email",
+    "definitionVersion" : "1.3.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-email",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-email/1.5.0/bonita-connector-email-1.5.0.jar"
+    },
+    "jarEntry" : "email.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.groovy.GroovyScriptConnector",
+    "implementationId" : "scripting-groovy-script-impl",
+    "implementationVersion" : "1.1.4",
+    "definitionId" : "scripting-groovy-script",
+    "definitionVersion" : "1.0.1",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-groovy",
+      "version" : "1.1.4",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-groovy/1.1.4/bonita-connector-groovy-1.1.4.jar"
+    },
+    "jarEntry" : "scripting-groovy-script.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.DeleteConnectorImpl",
+    "implementationId" : "rest-delete-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-delete",
+    "definitionVersion" : "1.4.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-delete.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.HeadConnectorImpl",
+    "implementationId" : "rest-head-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-head",
+    "definitionVersion" : "1.2.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-head.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.PutConnectorImpl",
+    "implementationId" : "rest-file-put-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-file-put",
+    "definitionVersion" : "1.2.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-file-put.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.PutConnectorImpl",
+    "implementationId" : "rest-put-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-put",
+    "definitionVersion" : "1.5.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-put.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.Oauth2ConnectorImpl",
+    "implementationId" : "oauth-auth-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "oauth-auth",
+    "definitionVersion" : "1.0.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "oauth-auth.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.PostConnectorImpl",
+    "implementationId" : "rest-post-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-post",
+    "definitionVersion" : "1.5.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-post.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.GetConnectorImpl",
+    "implementationId" : "rest-get-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-get",
+    "definitionVersion" : "1.4.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-get.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.PostConnectorImpl",
+    "implementationId" : "rest-file-post-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-file-post",
+    "definitionVersion" : "1.2.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-file-post.impl"
+  }, {
+    "type" : "CONNECTOR",
+    "className" : "org.bonitasoft.connectors.rest.PatchConnectorImpl",
+    "implementationId" : "rest-patch-impl",
+    "implementationVersion" : "1.5.0",
+    "definitionId" : "rest-patch",
+    "definitionVersion" : "1.1.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-patch.impl"
+  } ],
+  "filterImplementations" : [ ],
+  "connectorDefinitions" : [ {
+    "definitionId" : "email",
+    "definitionVersion" : "1.3.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-email",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-email/1.5.0/bonita-connector-email-1.5.0.jar"
+    },
+    "jarEntry" : "email.def"
+  }, {
+    "definitionId" : "scripting-groovy-script",
+    "definitionVersion" : "1.0.1",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-groovy",
+      "version" : "1.1.4",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-groovy/1.1.4/bonita-connector-groovy-1.1.4.jar"
+    },
+    "jarEntry" : "scripting-groovy-script.def"
+  }, {
+    "definitionId" : "rest-patch",
+    "definitionVersion" : "1.1.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-patch.def"
+  }, {
+    "definitionId" : "rest-delete",
+    "definitionVersion" : "1.4.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-delete.def"
+  }, {
+    "definitionId" : "rest-post",
+    "definitionVersion" : "1.5.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-post.def"
+  }, {
+    "definitionId" : "rest-file-put",
+    "definitionVersion" : "1.2.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-file-put.def"
+  }, {
+    "definitionId" : "oauth-auth",
+    "definitionVersion" : "1.0.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "oauth-auth.def"
+  }, {
+    "definitionId" : "rest-head",
+    "definitionVersion" : "1.2.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-head.def"
+  }, {
+    "definitionId" : "rest-put",
+    "definitionVersion" : "1.5.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-put.def"
+  }, {
+    "definitionId" : "rest-get",
+    "definitionVersion" : "1.4.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-get.def"
+  }, {
+    "definitionId" : "rest-file-post",
+    "definitionVersion" : "1.2.0",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.connectors",
+      "artifactId" : "bonita-connector-rest",
+      "version" : "1.5.0",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/connectors/bonita-connector-rest/1.5.0/bonita-connector-rest-1.5.0.jar"
+    },
+    "jarEntry" : "rest-file-post.def"
+  } ],
+  "filterDefinitions" : [ ],
+  "restApiExtensions" : [ ],
+  "pages" : [ ],
+  "forms" : [ ],
+  "themes" : [ ],
+  "applicationDescriptors" : [ {
+    "displayName" : "Bonita Administrator Application",
+    "version" : "8.0",
+    "description" : "This application allows to deploy and manage all the elements of Bonita projects.",
+    "profile" : "Administrator",
+    "appToken" : "adminAppBonita",
+    "artifact" : {
+      "groupId" : "org.bonitasoft.web.application",
+      "artifactId" : "bonita-admin-application",
+      "version" : "10.4.0",
+      "classifier" : "application",
+      "file" : "/Users/nicolai/.m2/repository/org/bonitasoft/web/application/bonita-admin-application/10.4.0/bonita-admin-application-10.4.0-application.zip"
+    }
+  } ],
+  "issues" : [ ]
+}
