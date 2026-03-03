@@ -1,0 +1,22 @@
+{
+  "type" : "email",
+  "id" : "remindLineManager",
+  "description" : "Reminder email to the line manager about a pending absence request.",
+  "headers" : {
+    "from" : "no-reply@company.example",
+    "to" : "${mgr1_email}",
+    "subject" : "Pending Absence Request for ${req1_employeeId}"
+  },
+  "body" : {
+    "templateRef" : "remind-line-manager.ftl",
+    "parameters" : {
+      "managerName" : "${mgr1_fullName}",
+      "employeeName" : "${req1_employeeId}",
+      "absenceType" : "${req1_absenceType}",
+      "startDate" : "${req1_startDate}",
+      "endDate" : "${req1_endDate}",
+      "reason" : "${req1_reason}",
+      "reviewLink" : "https://abcd..../requests/${req1_requestId}"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type" : "rest",
+  "id" : "notifyEmployee",
+  "description" : "Send final decision to employee.",
+  "request" : {
+    "method" : "POST",
+    "url" : "https://httpbin.org/post",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{\"recipient\":\"${req1_employeeId}\",\"title\":\"Absence Request Update\",\"content\":\"Dear ${req1_employeeId}, your absence request #${req1_requestId} has been ${req1_status}. Thank you for your submission.\"}"
+  }
+}

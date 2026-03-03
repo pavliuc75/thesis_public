@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+camunda.bpm:
+  admin-user:
+    id: demo
+    password: demo
+    firstName: Demo
+  filter:
+    create: All tasks
+
