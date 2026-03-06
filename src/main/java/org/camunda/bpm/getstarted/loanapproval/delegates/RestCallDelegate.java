@@ -34,8 +34,6 @@ public class RestCallDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        //TODO TEST !!!!!!!
-
         // Get REST config filename from Camunda input parameter
         String restCallConfigFileName = (String) delegateExecution.getVariable("restCallConfig");
 
