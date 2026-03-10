@@ -35,9 +35,6 @@
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
     <bpmn:userTask camunda:assignee="bob" camunda:formKey="embedded:app:forms/approve_absence_form.html" id="Activity_1f3770r" name="Approve Absence">
-      <bpmn:extensionElements>
-        <camunda:executionListener delegateExpression="${fetchManagerDataDelegate}" event="start"/>
-      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jk5k1u</bpmn:incoming>
       <bpmn:incoming>Flow_1sh668o</bpmn:incoming>
       <bpmn:outgoing>Flow_12qdrbp</bpmn:outgoing>
@@ -87,6 +84,7 @@
     </bpmn:serviceTask>
     <bpmn:serviceTask camunda:delegateExpression="${sendEmailDelegate}" id="Activity_1q9he4w" name="Remind Line Manager">
       <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${fetchManagerDataDelegate}" event="start"/>
         <camunda:inputOutput>
           <camunda:inputParameter name="configJson">remind_line_manager_email.json</camunda:inputParameter>
           <camunda:inputParameter name="templateFtl">remind_line_manager_email.ftl</camunda:inputParameter>
