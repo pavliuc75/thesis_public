@@ -7,6 +7,7 @@ import generator.bpmn.models.Lane;
 import generator.bpmn.models.ProcessDef;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -302,6 +303,12 @@ public class CamundaBpmnGenerator {
                                 continue;
                             }
 
+                            // camunda:xml contains raw XML snippet(s) that must be appended as child elements.
+                            if ("camunda:xml".equals(attrName)) {
+                                appendCamundaXmlChildren(flowNodeEl, doc, attrValue);
+                                continue;
+                            }
+
                             // Handle namespace attributes (e.g., "camunda:assignee", "camunda:class")
                             if (attrName.contains(":")) {
                                 String attrPrefix = attrName.substring(0, attrName.indexOf(":"));
@@ -424,6 +431,89 @@ public class CamundaBpmnGenerator {
         }
         
         return extensionElements;
+    }
+
+    /**
+     * Appends Camunda XML fragments as direct child elements of the target BPMN node.
+     */
+    private static void appendCamundaXmlChildren(Element parent, Document doc, String xmlFragment) {
+        if (xmlFragment == null || xmlFragment.trim().isEmpty()) {
+            return;
+        }
+
+        // If the value came from a serialized map (e.g., "{key=<xml/>}"), keep only the value part.
+        String fragmentToAppend = extractValueFromSerializedKeyValue(xmlFragment);
+        if (fragmentToAppend == null || fragmentToAppend.isEmpty()) {
+            return;
+        }
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            String wrapped = "<wrapper "
+                    + "xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" "
+                    + "xmlns:camunda=\"http://camunda.org/schema/1.0/bpmn\" "
+                    + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+                    + ">"
+                    + fragmentToAppend
+                    + "</wrapper>";
+
+            Document fragmentDoc = builder.parse(
+                    new java.io.ByteArrayInputStream(wrapped.getBytes(StandardCharsets.UTF_8)));
+            NodeList children = fragmentDoc.getDocumentElement().getChildNodes();
+            for (int i = 0; i < children.getLength(); i++) {
+                Node child = children.item(i);
+                if (child.getNodeType() != Node.ELEMENT_NODE) {
+                    continue;
+                }
+                Node imported = doc.importNode(child, true);
+                if (isBpmnExtensionElements(imported) && parent.hasChildNodes()) {
+                    parent.insertBefore(imported, parent.getFirstChild());
+                } else {
+                    parent.appendChild(imported);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Warning: Failed to append Camunda vendor XML fragment: " + e.getMessage());
+        }
+    }
+
+    private static boolean isBpmnExtensionElements(Node node) {
+        if (node == null || node.getNodeType() != Node.ELEMENT_NODE) {
+            return false;
+        }
+
+        Element element = (Element) node;
+        return "extensionElements".equals(element.getLocalName()) &&
+                BPMN_NS.equals(element.getNamespaceURI());
+    }
+
+    /**
+     * Extracts the value from a serialized single key-value map string.
+     * Example: "{foo=<bpmn:extensionElements/>}" -> "<bpmn:extensionElements/>"
+     */
+    private static String extractValueFromSerializedKeyValue(String text) {
+        if (text == null) {
+            return null;
+        }
+
+        String trimmed = text.trim();
+        if (!(trimmed.startsWith("{") && trimmed.endsWith("}"))) {
+            return trimmed;
+        }
+
+        String inner = trimmed.substring(1, trimmed.length() - 1).trim();
+        int separatorIndex = inner.indexOf('=');
+        if (separatorIndex < 0 || separatorIndex >= inner.length() - 1) {
+            return trimmed;
+        }
+
+        return inner.substring(separatorIndex + 1).trim();
     }
 
     /**

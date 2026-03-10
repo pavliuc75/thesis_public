@@ -4,7 +4,7 @@
     <bpmn:extensionElements />
     <bpmn:participant id="Participant_0wge6f9" name="Absence Request" processRef="absenceRequest" />
   </bpmn:collaboration>
-  <bpmn:process id="absenceRequest" name="absenceRequest" isExecutable="true" camunda:historyTimeToLive="P180D">
+  <bpmn:process id="absenceRequest" name="absenceRequest" isExecutable="true">
     <bpmn:laneSet id="LaneSet_1ibkkto">
       <bpmn:lane id="Lane_13k91v8" name="Line Manager">
         <bpmn:flowNodeRef>Activity_1f3770r</bpmn:flowNodeRef>
@@ -35,9 +35,6 @@
       </bpmn:dataOutputAssociation>
     </bpmn:userTask>
     <bpmn:userTask id="Activity_1f3770r" name="Approve Absence">
-      <bpmn:extensionElements>
-        <camunda:executionListener delegateExpression="${fetchManagerDataDelegate}" event="start" />
-      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1jk5k1u</bpmn:incoming>
       <bpmn:incoming>Flow_1sh668o</bpmn:incoming>
       <bpmn:outgoing>Flow_12qdrbp</bpmn:outgoing>
